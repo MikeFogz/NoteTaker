@@ -7,6 +7,8 @@ const clientRoutes = require("./routes/client-routes");
 
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
+app.use(express.static(__dirname + "/public"))
+
 
 app.use("/api", apiRoutes);
 app.use("/", clientRoutes);
