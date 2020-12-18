@@ -13,4 +13,4 @@ app.use(express.static(__dirname + "/public"))
 app.use("/api", apiRoutes);
 app.use("/", clientRoutes);
 
-app.listen(PORT, () => console.log(`listending at http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`listening at http://localhost:${PORT}`));

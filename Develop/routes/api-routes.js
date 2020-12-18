@@ -9,7 +9,9 @@ router.get("/notes", (req, res) => {
 });
 
 router.post("/notes", (req, res) => {
+   
     console.log(req.body);
+
     fs.readFile("./db/db.json", "utf8", (err, data) => {
         if (err) throw err;
         
@@ -21,6 +23,7 @@ router.post("/notes", (req, res) => {
         });
     
         console.log(savedNotes);
+
         fs.writeFile("./db/db.json", JSON.stringify(savedNotes), (err) => {
             if (err) return res.JSON({ err: "problem adding" });
             res.json({msg: "successfully added" });
@@ -28,8 +31,21 @@ router.post("/notes", (req, res) => {
     });
 });
 
-router.delete("/notes", (req, res) => {
-    console.log("success!");
+router.delete("/notes/:id", (req, res) => {
+   
+    console.log(req.body);
+
+    fs.readFile("./db/db.json", "utf8", (err, data) => {
+        if (err) throw err;
+        const savedNotes = JSON.parse(data);
+        const deleteNotes = req.params.id;
+        const clearedNote = deleteNotes.filter((element) => note !== element.id);
+
+        fs.writeFile("./db/db.json", JSON.stringify(clearedNote), (err) => {
+            if (err) return res.JSON({ err: "problem adding" });
+            res.json({msg: "successfully added" });
+        });
+    });
 });
 
 module.exports = router
