@@ -2,6 +2,7 @@ const router = require("express").Router();
 const fs = require("fs");
 const { nanoid } = require("nanoid");
 
+
 router.get("/notes", (req, res) => {
     fs.readFile("./db/db.json", "utf8", (err, data) => {
         if (err) throw err;
