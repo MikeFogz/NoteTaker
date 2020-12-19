@@ -26,6 +26,8 @@ Once installed run the applicaiton by opening the terminal and entering: nodemon
 
 When on the localhost page click get started and you may begin writing notes.
 
+[Deployed Heroku App](https://mikefogz-notetaker.herokuapp.com/)
+
 ![Gif walkthru of deployed app](./Assets/NoteTaker.gif)
 
 ## Contributing
