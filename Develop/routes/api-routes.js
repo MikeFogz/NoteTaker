@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const fs = require("fs");
+const { nanoid } = require("nanoid");
 
 router.get("/notes", (req, res) => {
     fs.readFile("./db/db.json", "utf8", (err, data) => {
@@ -20,6 +21,7 @@ router.post("/notes", (req, res) => {
         savedNotes.push({
             title: req.body.title,
             text: req.body.text,
+            id: nanoid(),
         });
     
         console.log(savedNotes);
@@ -39,10 +41,10 @@ router.delete("/notes/:id", (req, res) => {
         if (err) throw err;
         const savedNotes = JSON.parse(data);
         const deleteNotes = req.params.id;
-        const clearedNote = deleteNotes.filter((element) => note !== element.id);
+        const clearedNote = savedNotes.filter((element) => deleteNotes !== element.id);
 
         fs.writeFile("./db/db.json", JSON.stringify(clearedNote), (err) => {
-            if (err) return res.JSON({ err: "problem adding" });
+            if (err) return res.JSON({ err: "problem deleting" });
             res.json({msg: "successfully added" });
         });
     });
